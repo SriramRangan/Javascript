@@ -31,11 +31,26 @@ var myTeamObj = {
         return temp;
     },
     countByType: function(type) {
-        //TODO
-
+        var count = 0;
+        //this here refers to the current Object. In this case this is myTeamObj. key refers to every property
+        //in myTeamObj like Sriram, Omkar, Raju, countByType etc. You need not use key as the word to denote this.
+        //You could use any word like p, property, names, whatever etc.
+        for(key in this) {
+            if(this[key].type === type) {
+                count++;
+            }
+        }
+        return count;
     },
-    count : function() {
-
+    countNumberOfTeamMembers : function() {
+        var count = 0;
+        for(key in this) {
+            var type = this[key].type;
+            if(type === 'Manager' || type === 'Developer') {
+                count++
+            }
+        }
+        return count;
     }
 
 };
@@ -48,3 +63,5 @@ console.log(myTeamObj);
 console.log("Adding Team Members");
 myTeamObj.addTeamMember(myReturnedTeamMember.name, myReturnedTeamMember.type, myReturnedTeamMember.location, myReturnedTeamMember.background);
 console.log(myTeamObj);
+console.log(myTeamObj.countByType("Developer"));
+console.log(myTeamObj.countNumberOfTeamMembers());
