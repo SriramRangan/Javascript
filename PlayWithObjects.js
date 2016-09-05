@@ -30,6 +30,7 @@ var myTeamObj = {
         return temp;
     },
     countByType: function(type) {
+        //TODO
 
     },
     count : function() {
