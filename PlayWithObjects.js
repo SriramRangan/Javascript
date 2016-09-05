@@ -17,6 +17,7 @@ var myTeamObj = {
         //it with a value of name being passed in. So if Raju is the name being passed in, then it retrieves
         //the object Raju by using this["Raju"]. Now it has a handle of the Raju object. Then it adds a property
         //called name to the Raju object and assigns it a value Raju.
+        //this always refers to the current object
         this[name].name = name;
 
         //assign the object being deleted to a temp variable after adding a new properrty in the above line.
