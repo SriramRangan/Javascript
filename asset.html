@@ -1,0 +1,118 @@
+<html>
+<head>
+    <title>Test Suite</title>
+    <script>
+
+        function assert(value, desc) {
+            var li = document.createElement("li");
+            li.className = value ? "pass" : "fail";
+            li.appendChild(document.createTextNode(desc));
+            document.getElementById("results").appendChild(li);
+        }
+
+        window.onload = function() {
+            outer();
+        };
+
+
+        function outer() {
+            assert(true, "|================Inside Outer Before a=============|");
+            assert(typeof outer === "function", "outer is a function");
+            assert(typeof inner === "function", "inner is a function");
+            assert(typeof a === "number", "a is a number");
+            assert(typeof b === "number", "b is a number");
+            assert(typeof c === "number", "c is a number");
+            assert(a !== "undefined", "a is defined");
+            assert(b !== "undefined", "b is defined");
+            assert(c !== "undefined", "c is defined");
+            var a = 1;
+
+            assert(true, "|================Inside Outer After a=============|");
+            assert(typeof outer === "function", "outer is a function");
+            assert(typeof inner === "function", "inner is a function");
+            assert(typeof a === "number", "a is a number");
+            assert(typeof b === "number", "b is a number");
+            assert(typeof c === "number", "c is a number");
+            assert(a !== "undefined", "a is defined");
+            assert(b !== "undefined", "b is defined");
+            assert(c !== "undefined", "c is defined");
+
+            function inner() {
+                //Do nothing
+                assert(true, "|================Inside Outer Inside Inner=============|");
+                assert(typeof outer === "function", "outer is a function");
+                assert(typeof inner === "function", "inner is a function");
+                assert(typeof a === "number", "a is a number");
+                assert(typeof b === "number", "b is a number");
+                assert(typeof c === "number", "c is a number");
+                assert(a !== "undefined", "a is defined");
+                assert(b !== "undefined", "b is defined");
+                assert(c !== "undefined", "c is defined");
+            }
+
+            assert(true, "|================After Inner Before b=============|");
+            assert(typeof outer === "function", "outer is a function");
+            assert(typeof inner === "function", "inner is a function");
+            assert(typeof a === "number", "a is a number");
+            assert(typeof b === "number", "b is a number");
+            assert(typeof c === "number", "c is a number");
+            assert(a !== "undefined", "a is defined");
+            assert(b !== "undefined", "b is defined");
+            assert(c !== "undefined", "c is defined");
+            var b = 2;
+            assert(true, "|================After b Before conditional=============|");
+            assert(typeof outer === "function", "outer is a function");
+            assert(typeof inner === "function", "inner is a function");
+            assert(typeof a === "number", "a is a number");
+            assert(typeof b === "number", "b is a number");
+            assert(typeof c === "number", "c is a number");
+            assert(a !== "undefined", "a is defined");
+            assert(b !== "undefined", "b is defined");
+            assert(c !== "undefined", "c is defined");
+
+            if(a ===1) {
+                assert(true, "|================After b Inside a conditional=============|");
+                assert(typeof outer === "function", "outer is a function");
+                assert(typeof inner === "function", "inner is a function");
+                assert(typeof a === "number", "a is a number");
+                assert(typeof b === "number", "b is a number");
+                assert(typeof c === "number", "c is a number");
+                assert(a !== "undefined", "a is defined");
+                assert(b !== "undefined", "b is defined");
+                assert(c !== "undefined", "c is defined");
+                var c = 3;
+                assert(true, "|================After c Inside a conditional=============|");
+                assert(typeof outer === "function", "outer is a function");
+                assert(typeof inner === "function", "inner is a function");
+                assert(typeof a === "number", "a is a number");
+                assert(typeof b === "number", "b is a number");
+                assert(typeof c === "number", "c is a number");
+                assert(a !== "undefined", "a is defined");
+                assert(b !== "undefined", "b is defined");
+                assert(c !== "undefined", "c is defined");
+            }
+            assert(true, "|================After conditional after c=============|");
+            assert(typeof outer === "function", "outer is a function");
+            assert(typeof inner === "function", "inner is a function");
+            assert(typeof a === "number", "a is a number");
+            assert(typeof b === "number", "b is a number");
+            assert(typeof c === "number", "c is a number");
+            assert(a !== "undefined", "a is defined");
+            assert(b !== "undefined", "b is defined");
+            assert(c !== "undefined", "c is defined");
+
+        }
+
+
+    </script>
+
+    <style>
+        #results li.pass { color: green; }
+        #results li.fail { color: red; }
+    </style>
+</head>
+
+<body>
+<ul id="results"></ul>
+</body>
+</html>
