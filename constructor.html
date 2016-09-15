@@ -1,0 +1,41 @@
+<html>
+<head>
+    <title>Test Suite</title>
+    <script>
+
+        function assert(value, desc) {
+            var li = document.createElement("li");
+            li.className = value ? "pass" : "fail";
+            li.appendChild(document.createTextNode(desc));
+            document.getElementById("results").appendChild(li);
+        }
+
+
+        window.onload = function() {
+            function Samurai() {
+                this.skulk = function() {
+                    return this;
+                }
+            }
+
+            var samurai1 = new Samurai();
+            var samurai2 = new Samurai();
+
+            assert(samurai1.skulk() === samurai1, "This is Samurai1");
+            assert(samurai2.skulk() === samurai2, "This is Samurai2");
+
+            console.log("Samurai"+samurai3());
+        };
+
+    </script>
+
+    <style>
+        #results li.pass { color: green; }
+        #results li.fail { color: red; }
+    </style>
+</head>
+
+<body>
+<ul id="results"></ul>
+</body>
+</html>
