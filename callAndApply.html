@@ -1,0 +1,47 @@
+<html>
+<head>
+    <title>Test Suite</title>
+    <script>
+
+        function assert(value, desc) {
+            var li = document.createElement("li");
+            li.className = value ? "pass" : "fail";
+            li.appendChild(document.createTextNode(desc));
+            document.getElementById("results").appendChild(li);
+        }
+
+
+        window.onload = function() {
+            function addNumbers() {
+                var results = 0;
+                for(var i=0; i<arguments.length; i++) {
+                    results += arguments[i];
+                }
+                this.results = results;
+            }
+
+            var ninja1 = {};
+            var ninja2 = {};
+            //Apply pass arguments as a array. The first argument is always the function or the invocation context.
+            addNumbers.apply(ninja1, [1,2,3,4]);
+            //Call pass arguments as individual arguments
+            addNumbers.call(ninja2,6,7,8,9);
+            assert(ninja1.results === 10, "The result is 10");
+            assert(ninja2.results === 30, "The result is 30");
+
+
+
+        };
+
+    </script>
+
+    <style>
+        #results li.pass { color: green; }
+        #results li.fail { color: red; }
+    </style>
+</head>
+
+<body>
+<ul id="results"></ul>
+</body>
+</html>
