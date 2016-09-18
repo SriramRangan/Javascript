@@ -1,0 +1,44 @@
+<html>
+<head>
+    <title>Test Suite</title>
+    <script>
+
+        function assert(value, desc) {
+            var li = document.createElement("li");
+            li.className = value ? "pass" : "fail";
+            li.appendChild(document.createTextNode(desc));
+            document.getElementById("results").appendChild(li);
+        }
+
+
+        window.onload = function() {
+            function forEach(list, callback) {
+                for(var i=0; i< list.length; i++) {
+                    callback.call(list[i], i);
+                }
+
+            }
+
+            var weapons = ["Sword", "Knife", "Barrel"];
+            forEach(weapons, function(index) {
+                assert(this.valueOf() === weapons[index], "The weapon is in the array");
+            });
+
+            function chirp(n) {
+                return n >1? chirp(n-1) + "-chirp": "shout";
+            }
+            assert(chirp(3) === "chirp-chirp-chirp", "Ninja is chirping correct number of times");
+        };
+
+    </script>
+
+    <style>
+        #results li.pass { color: green; }
+        #results li.fail { color: red; }
+    </style>
+</head>
+
+<body>
+<ul id="results"></ul>
+</body>
+</html>
