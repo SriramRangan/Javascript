@@ -1,0 +1,88 @@
+<html>
+<head>
+    <title>Test Suite</title>
+    <script>
+
+        function assert(value, desc) {
+            var li = document.createElement("li");
+            li.className = value ? "pass" : "fail";
+            li.appendChild(document.createTextNode(desc));
+            document.getElementById("results").appendChild(li);
+        }
+
+
+        window.onload = function() {
+
+            function testThis() {
+                return this;
+            }
+            assert(this === window, "this is Window");
+
+            var sing = {
+                action: function() {
+                    return this;
+                }
+            };
+
+            var dance = {
+                action: sing.action
+            };
+
+            assert(sing.action() === sing, "I am singing when sing is invoked");
+            assert(dance.action() === dance, "I am dancing when dance is invoked");
+
+            //Constuctors
+            function CreateObject(name){
+                this.name = name;
+            }
+            var myFirstInstance = new CreateObject("Sriram");
+            var mySecondInstance = new CreateObject("Ranganathan");
+            var myThirdInstance = CreateObject("Will This Work?");
+            assert(myFirstInstance.name === "Sriram", "A new Object with Name Sriram is created.");
+            assert(mySecondInstance.name === "Ranganathan", "A new Object with name Ranganathan is created.");
+            assert(window.name === "Will This Work?", "Wow!!! Name property got created on window object");
+            console.log(myFirstInstance);
+
+            //call and apply
+            function sum() {
+                var results = 0;
+                for(var i=0; i<arguments.length; i++) {
+                    results += arguments[i];
+                }
+                this.results = results;
+            }
+
+            var arrayObject = {};
+            var regularObject = {};
+            sum.apply(arrayObject, [1,2,3,4,5,6]);
+            sum.call(regularObject, 1,2,3,4,5,6);
+            assert(arrayObject.results === 21, "The sum is 21 via apply");
+            assert(regularObject.results === 21, "The sum is 21 via call")
+
+            //CAllback function using call
+            function forEach(list, callback){
+                for(var n=0; n<list.length; n++) {
+                    callback.call(list[n],n);
+                }
+            }
+
+            var numbers = [1,2,3,4,5,6,7,8,9];
+            var squares = [1,4,9,16,25,36,49,64,81];
+
+            forEach(numbers, function(index) {
+                assert(this*this === squares[index], "The results match. The sqaure of "+numbers[index]+" is " +this*this);
+            });
+        };
+
+    </script>
+
+    <style>
+        #results li.pass { color: green; }
+        #results li.fail { color: red; }
+    </style>
+</head>
+
+<body>
+<ul id="results"></ul>
+</body>
+</html>
