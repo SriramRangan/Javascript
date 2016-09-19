@@ -1,0 +1,48 @@
+<html>
+<head>
+    <title>Test Suite</title>
+    <script>
+
+        function assert(value, desc) {
+            var li = document.createElement("li");
+            li.className = value ? "pass" : "fail";
+            li.appendChild(document.createTextNode(desc));
+            document.getElementById("results").appendChild(li);
+        }
+
+
+        window.onload = function() {
+            var fakingArray = {
+                size : 0,
+
+                add: function(value) {
+                    Array.prototype.push.call(this, value);
+                },
+
+                gather: function(element) {
+                    this.add(document.getElementById(element));
+                }
+            };
+            fakingArray.gather("first");
+            console.log(fakingArray);
+            assert(fakingArray.size ===1, "the length is 1");
+
+            fakingArray.gather("second");
+            console.log(fakingArray);
+            assert(fakingArray.size ===2 , "the length is 2");
+        };
+
+    </script>
+
+    <style>
+        #results li.pass { color: green; }
+        #results li.fail { color: red; }
+    </style>
+</head>
+
+<body>
+<input id="first" />
+<input id="second" />
+<ul id="results"></ul>
+</body>
+</html>
