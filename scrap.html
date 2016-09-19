@@ -1,0 +1,47 @@
+<html>
+<head>
+    <title>Test Suite</title>
+    <script>
+
+        function assert(value, desc) {
+            var li = document.createElement("li");
+            li.className = value ? "pass" : "fail";
+            li.appendChild(document.createTextNode(desc));
+            document.getElementById("results").appendChild(li);
+        }
+
+
+        window.onload = function() {
+
+            var word = {
+                isPalindrome: function readsSameEitherDirection(text) {
+                    if(text.length <=1) return true;
+                    if(text.charAt(0).toUpperCase() !== text.charAt(text.length-1).toUpperCase()) return false;
+                    return readsSameEitherDirection(text.substring(1, text.length-1));
+                }
+            };
+
+            var anotherWord = {
+                doesTheWordReadSameInBothDirections: word.isPalindrome
+            };
+
+            assert(word.isPalindrome("Malayalam"), "Malayalam is a palindrome");
+            word = {}; //Ooops!!! Word object is re-defined. Even though the function exists it cannot be accessed
+            //since word property does not exist and we call word.isPalindrome. So the assertions will fail now
+
+            assert(anotherWord.doesTheWordReadSameInBothDirections("Malayalam"), "Malayalam is a palindrome");
+            assert(typeof readsSameEitherDirection === "undefined", "readsSameEitherDirection is undefined");
+        };
+
+    </script>
+
+    <style>
+        #results li.pass { color: green; }
+        #results li.fail { color: red; }
+    </style>
+</head>
+
+<body>
+<ul id="results"></ul>
+</body>
+</html>
