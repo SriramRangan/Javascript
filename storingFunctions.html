@@ -1,0 +1,57 @@
+<html>
+<head>
+    <title>Test Suite</title>
+    <script>
+
+        function assert(value, desc) {
+            var li = document.createElement("li");
+            li.className = value ? "pass" : "fail";
+            li.appendChild(document.createTextNode(desc));
+            document.getElementById("results").appendChild(li);
+        }
+
+
+        window.onload = function() {
+            var myObject = {
+                //ID to keep track of the functions added to cache
+                id: 1,
+                cache: {},
+                addFunction: function(fn) {
+                    if(!fn.id) {
+                        fn.id = myObject.id++;
+                        return !!(myObject.cache[fn.id] = fn);
+                    }
+                }
+            }
+
+            function reverse() {
+
+            }
+
+            function isPalindrome() {
+
+            }
+            assert(myObject.addFunction(reverse), "reserve function added to cache");
+            assert(!myObject.addFunction(reverse), "reserve function cannot be added to cache again");
+
+            assert(myObject.addFunction(isPalindrome), "isPalindrome function added to cache");
+            assert(!myObject.addFunction(isPalindrome), "isPalindrome function cannot be added to cache again");
+            assert(isPalindrome.id === 2, "palindrome id is 1");
+            console.log(reverse);
+            console.log(isPalindrome);
+            console.log(myObject.cache);
+
+        };
+
+    </script>
+
+    <style>
+        #results li.pass { color: green; }
+        #results li.fail { color: red; }
+    </style>
+</head>
+
+<body>
+<ul id="results"></ul>
+</body>
+</html>
