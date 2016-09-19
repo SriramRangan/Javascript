@@ -1,0 +1,44 @@
+<html>
+<head>
+    <title>Test Suite</title>
+    <script>
+
+        function assert(value, desc) {
+            var li = document.createElement("li");
+            li.className = value ? "pass" : "fail";
+            li.appendChild(document.createTextNode(desc));
+            document.getElementById("results").appendChild(li);
+        }
+
+
+        window.onload = function() {
+            function issPrime(value) {
+                console.log(issPrime);
+                if(!issPrime.cachedValue) issPrime.cachedValue = {};
+                if(issPrime.cachedValue[value]) return issPrime.cachedValue[value];
+                var isPrime = true;
+                for(var i=2; i<value; i++) {
+                    if(value % i == 0) {
+                        isPrime = false;
+                        break;
+                    }
+                }
+                return (issPrime.cachedValue[value] = isPrime);
+            };
+
+            assert(issPrime(5), "5 is a prime number");
+            assert(issPrime.cachedValue[5], "5 is a prime number from cache");
+        };
+
+    </script>
+
+    <style>
+        #results li.pass { color: green; }
+        #results li.fail { color: red; }
+    </style>
+</head>
+
+<body>
+<ul id="results"></ul>
+</body>
+</html>
