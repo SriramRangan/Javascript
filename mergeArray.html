@@ -20,7 +20,7 @@
                }
                return rootObject;
            }
-           var merged = merge({name: "Sriram"}, {role: "PM"}, {location: "Chicago"});
+           var merged = merge({name: "Sriram"}, {role: "PM"}, {location: "Chicago"}, {friend: "Bharath"});
            assert(merged["name"] === "Sriram", "Name is Sriram");
            assert(merged["role"] === "PM", "Role is PM");
            assert(merged["location"] === "Chicago", "Location is Chicago");

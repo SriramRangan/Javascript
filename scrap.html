@@ -12,25 +12,22 @@
 
 
         window.onload = function() {
+            function executeCallback(fn) {
+                return fn();
+            }
 
-            var word = {
-                isPalindrome: function readsSameEitherDirection(text) {
-                    if(text.length <=1) return true;
-                    if(text.charAt(0).toUpperCase() !== text.charAt(text.length-1).toUpperCase()) return false;
-                    return readsSameEitherDirection(text.substring(1, text.length-1));
-                }
-            };
+            assert(executeCallback(function() {return "true"}) === "true", "Callback executed successfully");
 
-            var anotherWord = {
-                doesTheWordReadSameInBothDirections: word.isPalindrome
-            };
+            function isPalindrome(text) {
+                if(text.length <= 1) return true;
+                if(text.toUpperCase().charAt(0) !== text.toUpperCase().charAt(text.length -1)) return false;
+                return isPalindrome(text.substring(1,text.length - 1));
+            }
+            assert(isPalindrome('Malayalam') === true, "Malayalam is a  palindorme");
+            assert(isPalindrome('Sriram') === false, "Sriram is not a palindrome");
 
-            assert(word.isPalindrome("Malayalam"), "Malayalam is a palindrome");
-            word = {}; //Ooops!!! Word object is re-defined. Even though the function exists it cannot be accessed
-            //since word property does not exist and we call word.isPalindrome. So the assertions will fail now
-
-            assert(anotherWord.doesTheWordReadSameInBothDirections("Malayalam"), "Malayalam is a palindrome");
-            assert(typeof readsSameEitherDirection === "undefined", "readsSameEitherDirection is undefined");
+            var values = [1,2,3,6,5,1,22];
+            alert(values.sort(function(value1, value2) {return value2 - value1}));
         };
 
     </script>
