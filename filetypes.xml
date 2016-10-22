@@ -3,6 +3,7 @@
     <extensionMap>
       <mapping pattern="PlayWithObjects" type="JavaScript" />
       <mapping pattern="callAndApply" type="JavaScript" />
+      <mapping pattern="Style_Guide" type="PLAIN_TEXT" />
     </extensionMap>
   </component>
 </application>
