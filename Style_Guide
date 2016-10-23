@@ -1,0 +1,43 @@
+JAVASCRIPT STYLE GUIDE:
+
+1. Always used Name Function Expression. Do not use Anonuous Function expression:
+
+GOOD:
+var foo = function bar() {
+
+}
+
+
+BAD:
+var foo = function() {
+
+}
+
+
+GOOD:
+(function foo() {
+
+})();
+
+BAD:
+(function() {
+
+})();
+
+Anonymous function expression comes with multiple problems that are resolved by named Function expression. They are:
+    1. Named function expression are very useful in debugging especially in minified code as you will have a name for
+    the function. You will never have a anonymous function in the stacktrace including IIFE.
+    2. Named function expression can do recursive calls by referring to its own name which is available to itself within
+    its scope. This name is not available outside the function.
+    3. It makes the code clear on the purpose of the function especially in nested functions.
+
+
+2. Never use the 'eval' and 'with' keyword. They are only required in extreme edge cases like templating engines and
+ should not be required in conventional programming. These two keywords prevent the compiler from doing certain
+ optimizations in lexical scoping as they introduce the dynamic scoping concept and prevents the compiler from doing
+ certain optimizations. Hence you code will be slower in their presence. Not just that piece of code but entire of most
+ of the code as it puts the compiler in a fix.
+
+
+
+
