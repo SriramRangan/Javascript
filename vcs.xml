@@ -14,8 +14,12 @@
           <option name="url" value="https://github.com/g0t4/pluralsight-modern-async-js.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://github.com/qunitjs/qunit.git" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
-    <option name="cloneParentDir" value="$USER_HOME$/Documents/Technology/Async" />
+    <option name="cloneParentDir" value="$USER_HOME$/Documents/Technology/Qunit" />
   </component>
 </application>
